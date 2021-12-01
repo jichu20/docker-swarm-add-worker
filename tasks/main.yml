@@ -1,0 +1,10 @@
+---
+# Si queremos acceder de forma aleatoria al primer host del grupo de administradores
+# - name: Add Workers to the Swarm
+#   shell: "docker swarm join --token {{ hostvars[groups['swarm-managers'][0]]['manager_token']['stdout'] }} {{ hostvars[groups['swarm-managers'][0]]['ansible_default_ipv4']['address'] }}:2377"
+#   tags: swarm
+
+# Si queremos acceder por nombre de host, utilizando uno de los nodos
+- name: Add Workers to the Swarm
+  shell: "docker swarm join --token {{ hostvars['pi-bastion.local']['worker_token']['stdout'] }} {{ hostvars['pi-bastion.local']['ansible_default_ipv4']['address'] }}:2377"
+  tags: swarm
